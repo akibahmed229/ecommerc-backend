@@ -16,7 +16,7 @@ const data = {
     },
     {
       name: 'Ms Attacker',
-      email: 'example2@mail.com',
+      email: 'example3@mail.com',
       password: '123456789',
       phone: '25252457890',
       address: '123 Main St',
