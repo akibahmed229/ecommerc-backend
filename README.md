@@ -17,3 +17,5 @@
 13. Connect to MongoDB database -> [mongoose]
 14. Schema & Model for User -> [bcryptjs]
 15. Create seed router for testing
+16. Get /api/users -> isAdmin -> getAllUsers -> searchByName + pagination functionality
+17. responseHandler controller for error or success

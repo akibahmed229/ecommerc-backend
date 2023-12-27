@@ -6,6 +6,7 @@ const xssClean = require("xss-clean");
 const rateLimit = require("express-rate-limit");
 const userRouter = require("./routers/userRouter");
 const seedRouter = require("./routers/seedRouter");
+const { errorResponse } = require("./controllers/responseController");
 
 const app = express();
 
@@ -32,15 +33,12 @@ app.get("/products", (req, res) => {
 
 // client error handling
 app.use((req, res, next) => {
-  next(creaeteError(404, "Not Found"));
+  next(creaeteError(404, "route Not Found"));
 });
 
 // server error handling -> all the errors
 app.use((err, req, res, next) => {
-  return res.status(err.status || 500).json({
-    success: false,
-    message: err.message || "Internal Server Error",
-  });
+  return errorResponse(res, { statusCode: err.statusCode, message: err.message})
 });
 
 module.exports = app;
