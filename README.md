@@ -4,9 +4,9 @@
 
 1. Course plane
 2. Environment setup
-3. create express server -> [express]
+3. Create express server -> [express]
 4. HTTP request & response
-5. nodemon and morgan package -> [nodemon,morgan]
+5. Nodemon and morgan package -> [nodemon,morgan]
 6. Api testing with Rapid APi
 7. Middleware
 8. Express Error Handling Middleware -> [body-parser]
@@ -18,4 +18,7 @@
 14. Schema & Model for User -> [bcryptjs]
 15. Create seed router for testing
 16. Get /api/users -> isAdmin -> getAllUsers -> searchByName + pagination functionality
-17. responseHandler controller for error or success
+17. ResponseHandler controller for error or success
+18. GET /api/users/:id -> get a single user by id
+19. How to Create services in the backend
+

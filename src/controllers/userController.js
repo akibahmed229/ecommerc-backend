@@ -1,6 +1,8 @@
-const creaeteError = require("http-errors");
+const createError = require("http-errors");
 const Users = require("../models/userModel");
 const { successResponse } = require("./responseController");
+const { default: mongoose } = require("mongoose");
+const { findUserByID } = require("../services/findUser");
 
 const getUsers = async (req, res, next) => {
   try {
@@ -30,7 +32,7 @@ const getUsers = async (req, res, next) => {
     const count = await Users.find(filter).countDocuments();
 
     // if no users found 
-    if (users.length === 0) throw creaeteError(404, "No users found!");
+    if (users.length === 0) throw createError(404, "No users found!");
 
     // send success response
     return successResponse(res, 
@@ -53,4 +55,27 @@ const getUsers = async (req, res, next) => {
   }
 };
 
-module.exports = {getUsers};
+
+const getUser = async (req, res, next) => {
+  try {
+    // get params
+    const id = req.params.id;
+
+    // if id is not a valid ObjectId
+    const user = await findUserByID(id);
+
+    // send success response
+    return successResponse(res, 
+      { 
+        message: "User were return successfully!",
+        payload:{
+          user
+        } 
+      }
+    )
+  } catch (error) {
+    next(error); 
+  }
+};
+
+module.exports = {getUsers, getUser};
