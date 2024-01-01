@@ -1,9 +1,11 @@
 const createError = require("http-errors");
+const fs = require("fs");
 const Users = require("../models/userModel");
 const { successResponse } = require("./responseController");
-const { default: mongoose } = require("mongoose");
-const { findUserByID } = require("../services/findUser");
+const { findWithID } = require("../services/findItem");
+const User = require("../models/userModel");
 
+// fetch all users
 const getUsers = async (req, res, next) => {
   try {
     // get query params
@@ -55,14 +57,16 @@ const getUsers = async (req, res, next) => {
   }
 };
 
-
-const getUser = async (req, res, next) => {
+// fetch user by id
+const getUserByID = async (req, res, next) => {
   try {
     // get params
     const id = req.params.id;
+  
+    const options = {password: 0, __v: 0, createdAt: 0, updatedAt: 0}; // exclude password, __v, createdAt, updatedAt
 
     // if id is not a valid ObjectId
-    const user = await findUserByID(id);
+    const user = await findWithID(User,id,options);
 
     // send success response
     return successResponse(res, 
@@ -78,4 +82,45 @@ const getUser = async (req, res, next) => {
   }
 };
 
-module.exports = {getUsers, getUser};
+// fetch user by idde
+const deleteUserByID = async (req, res, next) => {
+  try {
+    // get params
+    const id = req.params.id;
+  
+    const options = {password: 0, __v: 0, createdAt: 0, updatedAt: 0}; // exclude password, __v, createdAt, updatedAt
+
+    // if id is not a valid ObjectId
+    const user = await findWithID(User,id,options);
+
+    // delete user image from server
+    const userImagePath = user.image; // get user image path
+    fs.access(userImagePath, (err)=>{
+      if(err){
+        console.error("user image does not exist")
+      } else {
+        fs.unlink(userImagePath, (err) =>{
+          if(err) throw err;
+          console.error("user image deleted")
+        })
+      }
+    })
+
+    // delete user from db 
+    await Users.findByIdAndDelete({
+      _id: id,
+      isAdmin: { $ne: true }, // not equal
+    });
+
+    // send success response
+    return successResponse(res, 
+      { 
+        message: "User was deleted successfully!",
+      }
+    )
+  } catch (error) {
+    next(error); 
+  }
+};
+
+module.exports = {getUsers, getUserByID, deleteUserByID};

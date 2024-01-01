@@ -21,4 +21,5 @@
 17. ResponseHandler controller for error or success
 18. GET /api/users/:id -> get a single user by id
 19. How to Create services in the backend
-
+20. DELETE /api/users/:id -> delete a single user by id
+21. Refactoring and resuablity, dynamic 
