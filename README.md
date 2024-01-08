@@ -13,7 +13,7 @@
 9. How to handle HTTP errors -> [http-errors]
 10. How to secure API -> [xss-clean, express-rate-mit]
 11. Environment variables & .gitignore -> [dotenv]
-12. MVC Architrcture 
+12. MVC Architrcture
 13. Connect to MongoDB database -> [mongoose]
 14. Schema & Model for User -> [bcryptjs]
 15. Create seed router for testing
@@ -22,4 +22,9 @@
 18. GET /api/users/:id -> get a single user by id
 19. How to Create services in the backend
 20. DELETE /api/users/:id -> delete a single user by id
-21. Refactoring and resuablity, dynamic 
+21. Refactoring and resuablity, dynamic
+22. DeleteImage services
+23. POST /api/users/processRegister --> process the registration
+24. Create JWT
+25. setup smpt server & prepare email -> [security.google.com/settings/security/apppasswords]
+26. send email to user -> [nodemailer]
