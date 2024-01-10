@@ -28,3 +28,4 @@
 24. Create JWT
 25. setup smpt server & prepare email -> [security.google.com/settings/security/apppasswords]
 26. send email to user -> [nodemailer]
+27.

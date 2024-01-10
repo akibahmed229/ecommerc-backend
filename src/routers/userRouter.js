@@ -5,6 +5,7 @@ const {
   processRegister,
   activateUserAccount,
 } = require("../controllers/userController");
+const upload = require("../middlewares/uploadFile");
 
 const userRouter = require("express").Router();
 
@@ -12,7 +13,7 @@ const userRouter = require("express").Router();
 userRouter.get("/", getUsers);
 userRouter.get("/:id", getUserByID);
 userRouter.delete("/:id", deleteUserByID);
-userRouter.post("/processRegister", processRegister);
+userRouter.post("/processRegister", upload.single("image"), processRegister);
 userRouter.post("/verify", activateUserAccount);
 
 module.exports = userRouter;
