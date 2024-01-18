@@ -118,6 +118,9 @@ const processRegister = async (req, res, next) => {
     // get data from body
     const { name, email, password, phone, address } = req.body;
 
+    // get image from buffer
+    const imageBufferString = req.file.buffer.toString("base64");
+
     const userExists = await User.exists({ email });
 
     if (userExists)
@@ -129,6 +132,7 @@ const processRegister = async (req, res, next) => {
       password,
       phone,
       address,
+      image: imageBufferString,
     };
 
     // create jwt token
