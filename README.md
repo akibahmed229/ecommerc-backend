@@ -28,4 +28,9 @@
 24. Create JWT
 25. setup smpt server & prepare email -> [security.google.com/settings/security/apppasswords]
 26. send email to user -> [nodemailer]
-27.
+27. POST /api/users/verify -> verify + regsiter into database
+28. add multer middleware for image upload -> [multer]
+29. filtering files by size and tupes
+30. add express validator middleware for validation -> [express-validator]
+31. should we store image ad string or buffer?
+32. PUT /api/users/:id -> update a single user by id

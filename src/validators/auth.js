@@ -36,11 +36,13 @@ const validateUserRegistration = [
 
   body("phone").trim().notEmpty().withMessage("Phone is required"),
 
-  body("image").custom((value, { req }) => {
-    if (!req.file || !req.file.buffer) throw new Error("Image is required");
+  body("image")
+    .custom((value, { req }) => {
+      if (!req.file || !req.file.buffer) throw new Error("Image is required");
 
-    return true;
-  }),
+      return true;
+    })
+    .withMessage("Image is required"),
 ];
 
 // sign in validation

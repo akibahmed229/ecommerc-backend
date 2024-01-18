@@ -132,7 +132,7 @@ const processRegister = async (req, res, next) => {
       password,
       phone,
       address,
-      image: imageBufferString,
+      // image: imageBufferString,
     };
 
     // create jwt token
@@ -161,7 +161,7 @@ const processRegister = async (req, res, next) => {
     return successResponse(res, {
       statusCode: 200,
       message: `Please check your ${email} for activation link!`,
-      payload: { token },
+      payload: { token, imageBufferString },
     });
   } catch (error) {
     next(error);
